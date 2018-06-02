@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Олег Кузьмин](https://up.htmlacademy.ru/javascript/14/user/775789).
-* Наставник: `Неизвестно`.
+* Наставник: Игорь Антонов
 
 ---
 
