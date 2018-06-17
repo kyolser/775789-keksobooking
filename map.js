@@ -24,7 +24,7 @@ var createArray = function () {
       var featuresNum2 = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
       array.splice(featuresNum1, featuresNum2);
       return array;
-    }
+    };
 
     var photos = ['http://o0.github.io/assets/images/tokyo/hotel1.jpg', 'http://o0.github.io/assets/images/tokyo/hotel2.jpg', 'http://o0.github.io/assets/images/tokyo/hotel3.jpg'];
     var photoShuffle = function (array) {
@@ -37,7 +37,7 @@ var createArray = function () {
         array[randomIndex] = temporaryValue;
       }
       return array;
-    }
+    };
 
     ads[a] = {
       'author': {
@@ -63,8 +63,6 @@ var createArray = function () {
         'photos': photoShuffle(photos)
       }
     };
-
-    console.log(features)
   }
 };
 createArray();
@@ -83,17 +81,17 @@ var renderMapMark = function () {
   mapMarkElement.querySelector('.popup__text--price').textContent = ads[i].offer.price + ' р/ночь';
   switch (ads[i].offer.type) {
     case 'palace':
-    type = 'Дворец';
-    break;
+      type = 'Дворец';
+      break;
     case 'flat':
-    type = 'Квартира';
-    break;
+      type = 'Квартира';
+      break;
     case 'house':
-    type = 'Дом';
-    break;
+      type = 'Дом';
+      break;
     case 'bungalo':
-    type = 'Бунгало';
-    break;
+      type = 'Бунгало';
+      break;
   }
   mapMarkElement.querySelector('.popup__type').textContent = type;
   mapMarkElement.querySelector('.popup__text--capacity').textContent = ads[i].offer.rooms + ' комнаты для ' + ads[i].offer.guests + ' гостей';
