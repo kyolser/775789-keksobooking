@@ -223,17 +223,16 @@ var setEventPins = function () {
 
 var mapCardRemove = function () {
   var mapCard = document.querySelector('.map__card');
-  mapCard.remove();
+  mapCard.parentNode.removeChild(mapCard);
+
 };
 
 var closeCard = function () {
   var crossNodeList = document.querySelectorAll('.popup__close');
-  crossArray = Array.from(crossNodeList);
-  for (cross = 0; cross < crossArray.length; cross++) {
+  var crossArray = Array.from(crossNodeList);
+  for (var cross = 0; cross < crossArray.length; cross++) {
     crossArray[cross].addEventListener('click', mapCardRemove);
   }
 };
 
 mapPinMain.addEventListener('click', startWork);
-
-
