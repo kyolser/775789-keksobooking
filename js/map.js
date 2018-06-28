@@ -1,49 +1,49 @@
 'use strict';
 
 var TITLES = [
-  'Большая уютная квартира',
-  'Маленькая неуютная квартира',
-  'Огромный прекрасный дворец',
-  'Маленький ужасный дворец',
-  'Красивый гостевой домик',
-  'Некрасивый негостеприимный домик',
-  'Уютное бунгало далеко от моря',
-  'Неуютное бунгало по колено в воде'
+'Большая уютная квартира',
+'Маленькая неуютная квартира',
+'Огромный прекрасный дворец',
+'Маленький ужасный дворец',
+'Красивый гостевой домик',
+'Некрасивый негостеприимный домик',
+'Уютное бунгало далеко от моря',
+'Неуютное бунгало по колено в воде'
 ];
 
 var TYPES = [
-  'palace',
-  'flat',
-  'house',
-  'bungalo'
+'palace',
+'flat',
+'house',
+'bungalo'
 ];
 
 var CHECKIN = [
-  '12:00',
-  '13:00',
-  '14:00'
+'12:00',
+'13:00',
+'14:00'
 ];
 
 var CHECKOUT = [
-  '12:00',
-  '13:00',
-  '14:00'
+'12:00',
+'13:00',
+'14:00'
 ];
 
 var PIN_COUNT = 8;
 var FEAUTURES = [
-  'wifi',
-  'dishwasher',
-  'parking',
-  'washer',
-  'elevator',
-  'conditioner'
+'wifi',
+'dishwasher',
+'parking',
+'washer',
+'elevator',
+'conditioner'
 ];
 
 var PHOTOS = [
-  'http://o0.github.io/assets/images/tokyo/hotel1.jpg',
-  'http://o0.github.io/assets/images/tokyo/hotel2.jpg',
-  'http://o0.github.io/assets/images/tokyo/hotel3.jpg'
+'http://o0.github.io/assets/images/tokyo/hotel1.jpg',
+'http://o0.github.io/assets/images/tokyo/hotel2.jpg',
+'http://o0.github.io/assets/images/tokyo/hotel3.jpg'
 ];
 
 var AVATAR_PATH = 'img/avatars/user0';
@@ -236,3 +236,63 @@ var closeCard = function () {
 };
 
 mapPinMain.addEventListener('click', startWork);
+
+/*---------------------------------------------------------*/
+
+var selectType = document.querySelector('#type');
+var inputPrice = document.querySelector('#price');
+var selectTimeIn = document.querySelector('#timein');
+var selectTimeOut = document.querySelector('#timeout');
+var selectRoomNumber = document.querySelector('#room_number');
+var selectCapacity = document.querySelector('#capacity');
+var optionsCapacity = selectCapacity.querySelectorAll('option')
+var mainForm = document.querySelector('.ad-form');
+
+var validateForm = function() {
+  selectType.addEventListener('change', function (evt) {
+    if (selectType.value == 'bungalo') {
+      inputPrice.setAttribute('placeholder', 0)
+      inputPrice.setAttribute('minlength', 0)
+    } else if (selectType.value == 'flat') {
+      inputPrice.setAttribute('placeholder', 1000)
+      inputPrice.setAttribute('minlength', 1000)
+    } else if (selectType.value == 'house') {
+      inputPrice.setAttribute('placeholder', 5000)
+      inputPrice.setAttribute('minlength', 5000)
+    } else if (selectType.value == 'palace') {
+      inputPrice.setAttribute('placeholder', 10000)
+      inputPrice.setAttribute('minlength', 10000)
+    }
+  });
+
+  selectTimeIn.addEventListener('change', function (evt) {
+    selectTimeOut.value = selectTimeIn.value
+  });
+
+  selectTimeOut.addEventListener('change', function (evt) {
+    selectTimeIn.value = selectTimeOut.value
+  });
+
+/*  selectRoomNumber.addEventListener('change', function (evt) {
+   for (var i = 0; i < optionsCapacity.length; i++) {
+    optionsCapacity[i].setAttribute('disabled', true)
+  }
+  if (selectRoomNumber.value == '1') {
+    selectCapacity.value == "1"
+  } else if (selectRoomNumber.value == '2'){
+   selectCapacity.value == "2"
+ } else if (selectRoomNumber.value == '3'){
+   selectCapacity.value == "3"
+ } else if (selectRoomNumber.value == '100'){
+   selectCapacity.value == "0"
+ }
+})*/
+
+
+
+
+}
+
+/*mainForm.addEventListener()*/
+
+validateForm()
