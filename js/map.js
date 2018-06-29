@@ -1,49 +1,49 @@
 'use strict';
 
 var TITLES = [
-'Большая уютная квартира',
-'Маленькая неуютная квартира',
-'Огромный прекрасный дворец',
-'Маленький ужасный дворец',
-'Красивый гостевой домик',
-'Некрасивый негостеприимный домик',
-'Уютное бунгало далеко от моря',
-'Неуютное бунгало по колено в воде'
+  'Большая уютная квартира',
+  'Маленькая неуютная квартира',
+  'Огромный прекрасный дворец',
+  'Маленький ужасный дворец',
+  'Красивый гостевой домик',
+  'Некрасивый негостеприимный домик',
+  'Уютное бунгало далеко от моря',
+  'Неуютное бунгало по колено в воде'
 ];
 
 var TYPES = [
-'palace',
-'flat',
-'house',
-'bungalo'
+  'palace',
+  'flat',
+  'house',
+  'bungalo'
 ];
 
 var CHECKIN = [
-'12:00',
-'13:00',
-'14:00'
+  '12:00',
+  '13:00',
+  '14:00'
 ];
 
 var CHECKOUT = [
-'12:00',
-'13:00',
-'14:00'
+  '12:00',
+  '13:00',
+  '14:00'
 ];
 
 var PIN_COUNT = 8;
 var FEAUTURES = [
-'wifi',
-'dishwasher',
-'parking',
-'washer',
-'elevator',
-'conditioner'
+  'wifi',
+  'dishwasher',
+  'parking',
+  'washer',
+  'elevator',
+  'conditioner'
 ];
 
 var PHOTOS = [
-'http://o0.github.io/assets/images/tokyo/hotel1.jpg',
-'http://o0.github.io/assets/images/tokyo/hotel2.jpg',
-'http://o0.github.io/assets/images/tokyo/hotel3.jpg'
+  'http://o0.github.io/assets/images/tokyo/hotel1.jpg',
+  'http://o0.github.io/assets/images/tokyo/hotel2.jpg',
+  'http://o0.github.io/assets/images/tokyo/hotel3.jpg'
 ];
 
 var DEFAUTL_SELECTED_ROOM = '1';
@@ -232,7 +232,7 @@ var mapCardRemove = function () {
 
 mapPinMain.addEventListener('click', startWork);
 
-/*DragAndDrop--------------------------------------------------------*/
+/* DragAndDrop--------------------------------------------------------*/
 
 var MAP_PIN_MAIN_HEIGHT = 81;
 var MAP_PIN_MAIN_WIDTH = 65;
@@ -258,33 +258,33 @@ mapPinMain.addEventListener('mousedown', function (evt) {
 
     var mapPinMainTop = mapPinMain.offsetTop - shift.y;
     var mapPinMainLeft = mapPinMain.offsetLeft - shift.x;
-    mapPinMain.style.top = mapPinMainTop  + 'px';
-    mapPinMain.style.left = mapPinMainLeft+ 'px';
+    mapPinMain.style.top = mapPinMainTop + 'px';
+    mapPinMain.style.left = mapPinMainLeft + 'px';
 
-    formAdress.value = (mapPinMainTop + MAP_PIN_MAIN_HEIGHT) + ', ' + (mapPinMainLeft + (MAP_PIN_MAIN_WIDTH/2));
+    formAdress.value = (mapPinMainTop + MAP_PIN_MAIN_HEIGHT) + ', ' + (mapPinMainLeft + (MAP_PIN_MAIN_WIDTH / 2));
 
     if (mapPinMainTop <= 0) {
-      mapPinMain.style.top = 0
+      mapPinMain.style.top = 0;
     } else if (mapPinMainTop >= 600) {
-     mapPinMain.style.top = 600 + 'px';
-   }
-   if (mapPinMainLeft <= 0) {
-     mapPinMain.style.left = 0
-   } else if (mapPinMainLeft >= 1140) {
-     mapPinMain.style.left = 1140 + 'px';
-   }
- };
+      mapPinMain.style.top = 600 + 'px';
+    }
+    if (mapPinMainLeft <= 0) {
+      mapPinMain.style.left = 0;
+    } else if (mapPinMainLeft >= 1140) {
+      mapPinMain.style.left = 1140 + 'px';
+    }
+  };
 
- var onMouseUp = function (upEvt) {
-  upEvt.preventDefault();
-  document.removeEventListener('mousemove', onMouseMove);
-  document.removeEventListener('mouseup', onMouseUp);
-};
+  var onMouseUp = function (upEvt) {
+    upEvt.preventDefault();
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+  };
 
-document.addEventListener('mousemove', onMouseMove);
-document.addEventListener('mouseup', onMouseUp);
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
 });
-/*------------------------------------------*/
+/* ------------------------------------------*/
 
 /* ---------------------------------------------------------*/
 
