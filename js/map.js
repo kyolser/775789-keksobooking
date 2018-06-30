@@ -197,7 +197,6 @@ var renderMapPins = function (adsObjects) {
 
 var allAds = createArray();
 
-
 /* --------------------------------------------*/
 var fieldsetNodeList = document.querySelectorAll('fieldset');
 var fieldsetArray = Array.from(fieldsetNodeList);
@@ -223,18 +222,7 @@ var startWork = function () {
   mapBlock.classList.remove('map--faded');
   form.classList.remove('ad-form--disabled');
   renderMapPins(allAds);
-  setEventPins();
   removeDisabled();
-};
-
-
-var setEventPins = function () {
-
-  var mainPin = document.querySelector('.map__pin--main');
-  var mainPinLeft = parseFloat(mainPin.style.left);
-  var mainPinTop = parseFloat(mainPin.style.top);
-  formAdress.value = mainPinLeft + ', ' + mainPinTop;
-
 };
 
 var mapCardRemove = function () {
@@ -243,6 +231,60 @@ var mapCardRemove = function () {
 };
 
 mapPinMain.addEventListener('click', startWork);
+
+/* DragAndDrop--------------------------------------------------------*/
+
+var MAP_PIN_MAIN_HEIGHT = 81;
+var MAP_PIN_MAIN_WIDTH = 65;
+
+mapPinMain.addEventListener('mousedown', function (evt) {
+  evt.preventDefault();
+  var startCoords = {
+    x: evt.clientX,
+    y: evt.clientY
+  };
+
+  var onMouseMove = function (moveEvt) {
+    moveEvt.preventDefault();
+    var shift = {
+      x: startCoords.x - moveEvt.clientX,
+      y: startCoords.y - moveEvt.clientY
+    };
+
+    startCoords = {
+      x: moveEvt.clientX,
+      y: moveEvt.clientY
+    };
+
+    var mapPinMainTop = mapPinMain.offsetTop - shift.y;
+    var mapPinMainLeft = mapPinMain.offsetLeft - shift.x;
+    mapPinMain.style.top = mapPinMainTop + 'px';
+    mapPinMain.style.left = mapPinMainLeft + 'px';
+
+    formAdress.value = (mapPinMainTop + MAP_PIN_MAIN_HEIGHT) + ', ' + (mapPinMainLeft + (MAP_PIN_MAIN_WIDTH / 2));
+
+    if (mapPinMainTop <= 0) {
+      mapPinMain.style.top = 0;
+    } else if (mapPinMainTop >= 600) {
+      mapPinMain.style.top = 600 + 'px';
+    }
+    if (mapPinMainLeft <= 0) {
+      mapPinMain.style.left = 0;
+    } else if (mapPinMainLeft >= 1140) {
+      mapPinMain.style.left = 1140 + 'px';
+    }
+  };
+
+  var onMouseUp = function (upEvt) {
+    upEvt.preventDefault();
+    document.removeEventListener('mousemove', onMouseMove);
+    document.removeEventListener('mouseup', onMouseUp);
+  };
+
+  document.addEventListener('mousemove', onMouseMove);
+  document.addEventListener('mouseup', onMouseUp);
+});
+/* ------------------------------------------*/
 
 /* ---------------------------------------------------------*/
 
@@ -304,3 +346,4 @@ var validateForm = function () {
 
 
 validateForm();
+
