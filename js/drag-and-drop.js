@@ -2,22 +2,18 @@
 
 (function () {
 
-  var mapPinMain = document.querySelector('.map__pin--main');
-  var formAdress = document.querySelector('#address');
-
   var MAP_PIN_MAIN_HEIGHT = 80;
   var MAP_PIN_MAIN_WIDTH = 64;
 
   var MAP_HEIGHT = 600;
   var MAP_WIDTH = 1140;
 
-  /* var mapOverlay = document.querySelector('.map__overlay')
-var mapWidth = mapOverlay.offsetWidth;
-var mapHeigth = mapOverlay.offsetHeigth;*/
 
-  mapPinMain.addEventListener('mousedown', function (evt) {
+  var formAdress = document.querySelector('#address');
 
-    startWork();
+  window.globalVar.mapPinMain.addEventListener('mousedown', function (evt) {
+
+    window.startWork();
 
     evt.preventDefault();
     var startCoords = {
@@ -37,22 +33,22 @@ var mapHeigth = mapOverlay.offsetHeigth;*/
         y: moveEvt.clientY
       };
 
-      var mapPinMainTop = mapPinMain.offsetTop - shift.y;
-      var mapPinMainLeft = mapPinMain.offsetLeft - shift.x;
-      mapPinMain.style.top = mapPinMainTop + 'px';
-      mapPinMain.style.left = mapPinMainLeft + 'px';
+      var mapPinMainTop = window.globalVar.mapPinMain.offsetTop - shift.y;
+      var mapPinMainLeft = window.globalVar.mapPinMain.offsetLeft - shift.x;
+      window.globalVar.mapPinMain.style.top = mapPinMainTop + 'px';
+      window.globalVar.mapPinMain.style.left = mapPinMainLeft + 'px';
 
       formAdress.value = (mapPinMainTop + MAP_PIN_MAIN_HEIGHT) + ', ' + (mapPinMainLeft + (MAP_PIN_MAIN_WIDTH / 2));
 
       if (mapPinMainTop <= 0) {
-        mapPinMain.style.top = 0;
+        window.globalVar.mapPinMain.style.top = 0;
       } else if (mapPinMainTop >= MAP_HEIGHT) {
-        mapPinMain.style.top = MAP_HEIGHT + 'px';
+        window.globalVar.mapPinMain.style.top = MAP_HEIGHT + 'px';
       }
       if (mapPinMainLeft <= 0) {
-        mapPinMain.style.left = 0;
+        window.globalVar.mapPinMain.style.left = 0;
       } else if (mapPinMainLeft >= MAP_WIDTH) {
-        mapPinMain.style.left = MAP_WIDTH + 'px';
+        window.globalVar.mapPinMain.style.left = MAP_WIDTH + 'px';
       }
     };
 

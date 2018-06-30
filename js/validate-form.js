@@ -11,27 +11,34 @@
     '100': ['0']
   };
 
-  var selectType = document.querySelector('#type');
-  var inputPrice = document.querySelector('#price');
-  var selectTimeIn = document.querySelector('#timein');
-  var selectTimeOut = document.querySelector('#timeout');
-  var selectRoomNumber = document.querySelector('#room_number');
-  var selectCapacity = document.querySelector('#capacity');
+  var selectTypePrice = {
+    'bungalo': 0,
+    'flat': 1000,
+    'house': 5000,
+    'palace': 10000
+  };
+
+  var selectType = window.globalVar.form.querySelector('#type');
+  var inputPrice = window.globalVar.form.querySelector('#price');
+  var selectTimeIn = window.globalVar.form.querySelector('#timein');
+  var selectTimeOut = window.globalVar.form.querySelector('#timeout');
+  var selectRoomNumber = window.globalVar.form.querySelector('#room_number');
+  var selectCapacity = window.globalVar.form.querySelector('#capacity');
   var capacityOptions = selectCapacity.querySelectorAll('option');
 
   selectType.addEventListener('change', function () {
     if (selectType.value === 'bungalo') {
-      inputPrice.setAttribute('placeholder', 0);
-      inputPrice.setAttribute('min', 0);
+      inputPrice.setAttribute('placeholder', selectTypePrice.bungalo);
+      inputPrice.setAttribute('min', selectTypePrice.bungalo);
     } else if (selectType.value === 'flat') {
-      inputPrice.setAttribute('placeholder', 1000);
-      inputPrice.setAttribute('min', 1000);
+      inputPrice.setAttribute('placeholder', selectTypePrice.flat);
+      inputPrice.setAttribute('min', selectTypePrice.flat);
     } else if (selectType.value === 'house') {
-      inputPrice.setAttribute('placeholder', 5000);
-      inputPrice.setAttribute('min', 5000);
+      inputPrice.setAttribute('placeholder', selectTypePrice.house);
+      inputPrice.setAttribute('min', selectTypePrice.house);
     } else if (selectType.value === 'palace') {
-      inputPrice.setAttribute('placeholder', 10000);
-      inputPrice.setAttribute('min', 10000);
+      inputPrice.setAttribute('placeholder', selectTypePrice.palace);
+      inputPrice.setAttribute('min', selectTypePrice.palace);
     }
   });
 

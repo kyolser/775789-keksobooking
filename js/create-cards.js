@@ -9,8 +9,35 @@
     flat: 'Квартира'
   };
 
-  window.renderMapMark = function (adsOffer) {
-    var mapMarkElement = mapMarkTemp.querySelector('.map__card').cloneNode(true);
+  var closeCard = function () {
+
+    var KEY_ESCAPE = 'Escape';
+
+    var mapCardRemove = function () {
+      var mapCard = document.querySelector('.map__card');
+      mapCard.parentNode.removeChild(mapCard);
+    };
+
+    var documentKeydownHandler = function (evt) {
+      if (evt.key === KEY_ESCAPE) {
+        mapCardRemove();
+        document.removeEventListener('keydown', documentKeydownHandler);
+      }
+    };
+
+    var cross = document.querySelector('.popup__close');
+    cross.addEventListener('click', mapCardRemove);
+    document.addEventListener('keydown', documentKeydownHandler);
+  };
+
+  var pinClickHandler = function (adsObject) {
+    renderMapMark(adsObject);
+    closeCard();
+  };
+
+
+  var renderMapMark = function (adsOffer) {
+    var mapMarkElement = window.globalVar.mapMarkTemp.querySelector('.map__card').cloneNode(true);
     var featuresNew = [];
     var photosNew = [];
     mapMarkElement.querySelector('img').src = adsOffer.author.avatar;
@@ -31,11 +58,17 @@
       photosNew[p] = '<img src="' + adsOffer.offer.photos[p] + '" class="popup__photo" width="45" height="40" alt="Фотография жилья">';
     }
     popupPhotosElement.innerHTML = photosNew.join('');
-    var existCard = mapBlock.querySelector('.map__card');
+    var existCard = window.globalVar.mapBlock.querySelector('.map__card');
+
     if (existCard) {
-      return mapBlock.replaceChild(mapMarkElement, existCard);
+      return window.globalVar.mapBlock.replaceChild(mapMarkElement, existCard);
     }
-    return mapBlock.appendChild(mapMarkElement);
+    return window.globalVar.mapBlock.appendChild(mapMarkElement);
+  };
+
+  window.createCards = {
+    renderMapMark: renderMapMark,
+    pinClickHandler: pinClickHandler
   };
 
 }());
