@@ -20,6 +20,7 @@
   var startWork = function () {
     window.backend.downloadData(function (data) {
       window.renderMapPins(data);
+      window.renderMapPinsFilter(data);
       window.globalVar.mapBlock.classList.remove('map--faded');
       window.globalVar.form.classList.remove('ad-form--disabled');
       for (var field = 0; field < fieldsetArray.length; field++) {
