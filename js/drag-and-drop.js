@@ -6,17 +6,17 @@
   var MAP_PIN_MAIN_WIDTH = 64;
 
   var MAP_HEIGHT = 630;
-    var MAP_HEIGHT_MIN = 130;
+  var MAP_HEIGHT_MIN = 130;
   var MAP_WIDTH = document.querySelector('.map__pins').offsetWidth - MAP_PIN_MAIN_WIDTH;
 
-  var marker = true
+  var marker = true;
 
   window.globalVar.mapPinMain.addEventListener('mousedown', function (evt) {
 
 
-    if (marker)  {
+    if (marker) {
       window.startWork();
-      marker = false
+      marker = false;
     }
 
     evt.preventDefault();

@@ -5,7 +5,7 @@
   var fieldsetArray = Array.from(window.globalVar.fieldsetNodeList);
   var titlePage = document.querySelector('.promo');
   var message = document.createElement('div');
-        window.globalVar.formAdress.value = parseFloat(window.globalVar.mapPinMain.style.left) + ", " + parseFloat(window.globalVar.mapPinMain.style.top);
+  window.globalVar.formAdress.value = parseFloat(window.globalVar.mapPinMain.style.left) + ', ' + parseFloat(window.globalVar.mapPinMain.style.top);
 
   var stopWork = function (content) {
     window.globalVar.mapPinMain.classList.add('hold');
@@ -33,7 +33,6 @@
       stopWork(err);
     });
   };
-
 
 
   window.startWork = startWork;

@@ -22,13 +22,13 @@
   var compareByPrice = function (filterValue, offerPrice) {
     switch (filterValue) {
       case PriceTypes.MIDDLE:
-      return offerPrice >= 10000 && offerPrice < 50000;
+        return offerPrice >= 10000 && offerPrice < 50000;
       case PriceTypes.LOW:
-      return offerPrice < 10000;
+        return offerPrice < 10000;
       case PriceTypes.HIGH:
-      return offerPrice >= 50000;
+        return offerPrice >= 50000;
       default:
-      return true;
+        return true;
     }
   };
 
@@ -45,15 +45,15 @@
   var setFiltres = function () {
     var feauturesArr = Array.from(feauturesList);
 
-/*    feauturesArr.forEach(function(feat){
+        feauturesArr.forEach(function(feat){
       feat.addEventListener('focus', function(){
-        feat.addEventListener('keydown', function(){
-          if (evt.key == "Enter") {
+        feat.addEventListener('keydown', function(evt){
+          if (evt.key === 13) {
           alert()
         }
       })
       })
-    })*/
+    })
 
     var selectedFeautures = feauturesArr.filter(function (it) {
       return it.checked;

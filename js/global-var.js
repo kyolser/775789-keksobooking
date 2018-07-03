@@ -9,8 +9,8 @@
     mapMarkTemp: document.querySelector('.temp').content,
     mapPinMain: document.querySelector('.map__pin--main'),
     formAdress: document.querySelector('#address'),
-    KEY_ESCAPE : 'Escape',
-    success : document.querySelector('.success'),
+    KEY_ESCAPE: 'Escape',
+    success: document.querySelector('.success'),
     allLoadedPins: [],
     filtredPins: []
   };

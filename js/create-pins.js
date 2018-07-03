@@ -29,19 +29,19 @@
     }
   };
 
-  var formReset = document.querySelector('.ad-form__reset')
+  var formReset = document.querySelector('.ad-form__reset');
   var positionMainPinLeft = window.globalVar.mapPinMain.style.left;
   var positionMainPinTop = window.globalVar.mapPinMain.style.top;
 
-  formReset.addEventListener('click', function() {
+  formReset.addEventListener('click', function () {
     window.globalVar.mapBlock.classList.add('map--faded');
     window.globalVar.form.classList.add('ad-form--disabled');
-    removeMapPins()
+    removeMapPins();
     window.globalVar.mapPinMain.style.left = positionMainPinLeft;
     window.globalVar.mapPinMain.style.top = positionMainPinTop;
-    window.globalVar.formAdress.value = parseFloat(window.globalVar.mapPinMain.style.left) + ", " + parseFloat(window.globalVar.mapPinMain.style.top);
+    window.globalVar.formAdress.value = parseFloat(window.globalVar.mapPinMain.style.left) + ', ' + parseFloat(window.globalVar.mapPinMain.style.top);
 
-  })
+  });
 
   window.createPins = {
     removeMapPins: removeMapPins,

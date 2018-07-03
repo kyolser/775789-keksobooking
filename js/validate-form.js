@@ -27,7 +27,6 @@
   var capacityOptions = selectCapacity.querySelectorAll('option');
 
 
-
   selectType.addEventListener('change', function () {
     if (selectType.value === 'bungalo') {
       inputPrice.setAttribute('placeholder', selectTypePrice.bungalo);

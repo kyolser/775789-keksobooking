@@ -35,10 +35,10 @@
 
     var allRenderedPins = window.globalVar.mapBlock.querySelectorAll('.map__pin');
 
-    allRenderedPins.forEach(function(pin){
-      pin.classList.remove('map__pin--active')
-    })
-    evt.currentTarget.classList.add('map__pin--active')
+    allRenderedPins.forEach(function (pin) {
+      pin.classList.remove('map__pin--active');
+    });
+    evt.currentTarget.classList.add('map__pin--active');
     renderMapMark(adsObject);
     closeCard();
   };
