@@ -2,8 +2,6 @@
 
 (function () {
 
-  var ANY = 'any';
-
   var mapPins = window.globalVar.mapBlock.querySelector('.map__pins');
 
   var renderMapPins = function (adsObjects) {

@@ -45,7 +45,7 @@
   var setFiltres = function () {
     var feauturesArr = Array.from(feauturesList);
 
-/*        feauturesArr.forEach(function(feat){
+    /*        feauturesArr.forEach(function(feat){
       feat.addEventListener('focus', function(){
         feat.addEventListener('keydown', function(evt){
           if (evt.key === 13) {
