@@ -45,7 +45,7 @@
   var setFiltres = function () {
     var feauturesArr = Array.from(feauturesList);
 
-        feauturesArr.forEach(function(feat){
+/*        feauturesArr.forEach(function(feat){
       feat.addEventListener('focus', function(){
         feat.addEventListener('keydown', function(evt){
           if (evt.key === 13) {
@@ -53,7 +53,7 @@
         }
       })
       })
-    })
+    })*/
 
     var selectedFeautures = feauturesArr.filter(function (it) {
       return it.checked;
@@ -87,13 +87,13 @@
     });
   };
 
-  var onFiltresFormChange = function () {
+  var onFiltresFormChange = window.debounce(function () {
     window.createCards.mapCardRemove();
     window.createPins.removeMapPins();
     var filterPins = setFiltres();
     filterPins.splice(5, 10);
     window.createPins.renderMapPins(filterPins);
-  };
+  });
 
   filtresForm.addEventListener('change', onFiltresFormChange);
 

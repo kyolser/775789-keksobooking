@@ -20,6 +20,7 @@
 
   var startWork = function () {
     window.backend.downloadData(function (data) {
+      data = data.splice(5, 10);
       window.globalVar.allLoadedPins = data;
 
       window.createPins.renderMapPins(window.globalVar.allLoadedPins);
