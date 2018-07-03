@@ -9,18 +9,19 @@
     flat: 'Квартира'
   };
 
+  var mapCardRemove = function () {
+    var mapCard = document.querySelector('.map__card');
+    if (mapCard) {
+      mapCard.parentNode.removeChild(mapCard);
+    }
+  };
+
   var closeCard = function () {
 
-    var KEY_ESCAPE = 'Escape';
-
-    var mapCardRemove = function () {
-      var mapCard = document.querySelector('.map__card');
-      mapCard.parentNode.removeChild(mapCard);
-    };
-
     var documentKeydownHandler = function (evt) {
-      if (evt.key === KEY_ESCAPE) {
+      if (evt.key === window.globalVar.KEY_ESCAPE) {
         mapCardRemove();
+        window.globalVar.success.classList.add('hidden');
         document.removeEventListener('keydown', documentKeydownHandler);
       }
     };
@@ -30,11 +31,17 @@
     document.addEventListener('keydown', documentKeydownHandler);
   };
 
-  var pinClickHandler = function (adsObject) {
+  var pinClickHandler = function (adsObject, evt) {
+
+    var allRenderedPins = window.globalVar.mapBlock.querySelectorAll('.map__pin');
+
+    allRenderedPins.forEach(function(pin){
+      pin.classList.remove('map__pin--active')
+    })
+    evt.currentTarget.classList.add('map__pin--active')
     renderMapMark(adsObject);
     closeCard();
   };
-
 
   var renderMapMark = function (adsOffer) {
     var mapMarkElement = window.globalVar.mapMarkTemp.querySelector('.map__card').cloneNode(true);
@@ -68,7 +75,8 @@
 
   window.createCards = {
     renderMapMark: renderMapMark,
-    pinClickHandler: pinClickHandler
+    pinClickHandler: pinClickHandler,
+    mapCardRemove: mapCardRemove
   };
 
 }());

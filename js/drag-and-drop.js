@@ -5,15 +5,19 @@
   var MAP_PIN_MAIN_HEIGHT = 80;
   var MAP_PIN_MAIN_WIDTH = 64;
 
-  var MAP_HEIGHT = 600;
-  var MAP_WIDTH = 1140;
+  var MAP_HEIGHT = 630;
+    var MAP_HEIGHT_MIN = 130;
+  var MAP_WIDTH = document.querySelector('.map__pins').offsetWidth - MAP_PIN_MAIN_WIDTH;
 
-
-  var formAdress = document.querySelector('#address');
+  var marker = true
 
   window.globalVar.mapPinMain.addEventListener('mousedown', function (evt) {
 
-    window.startWork();
+
+    if (marker)  {
+      window.startWork();
+      marker = false
+    }
 
     evt.preventDefault();
     var startCoords = {
@@ -38,10 +42,10 @@
       window.globalVar.mapPinMain.style.top = mapPinMainTop + 'px';
       window.globalVar.mapPinMain.style.left = mapPinMainLeft + 'px';
 
-      formAdress.value = (mapPinMainTop + MAP_PIN_MAIN_HEIGHT) + ', ' + (mapPinMainLeft + (MAP_PIN_MAIN_WIDTH / 2));
+      window.globalVar.formAdress.value = (mapPinMainTop + MAP_PIN_MAIN_HEIGHT) + ', ' + (mapPinMainLeft + (MAP_PIN_MAIN_WIDTH / 2));
 
-      if (mapPinMainTop <= 0) {
-        window.globalVar.mapPinMain.style.top = 0;
+      if (mapPinMainTop <= MAP_HEIGHT_MIN) {
+        window.globalVar.mapPinMain.style.top = MAP_HEIGHT_MIN + 'px';
       } else if (mapPinMainTop >= MAP_HEIGHT) {
         window.globalVar.mapPinMain.style.top = MAP_HEIGHT + 'px';
       }

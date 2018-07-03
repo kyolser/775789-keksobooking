@@ -26,6 +26,8 @@
   var selectCapacity = window.globalVar.form.querySelector('#capacity');
   var capacityOptions = selectCapacity.querySelectorAll('option');
 
+
+
   selectType.addEventListener('change', function () {
     if (selectType.value === 'bungalo') {
       inputPrice.setAttribute('placeholder', selectTypePrice.bungalo);
@@ -65,4 +67,5 @@
 
   selectRoomNumber.addEventListener('change', setCapacityHandler);
   setCapacity(DEFAUTL_SELECTED_ROOM);
+
 }());
