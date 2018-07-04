@@ -63,7 +63,6 @@
     uploadData(new FormData(window.globalVar.form), function (response) {
       window.createPins.getResetFPage();
       window.globalVar.success.classList.remove('hidden');
-      console.log(response);
     });
   });
 

@@ -13,7 +13,7 @@
     success: document.querySelector('.success'),
     allLoadedPins: [],
     filtredPins: [],
-    marker : true
+    marker: true
   };
 
 })();
