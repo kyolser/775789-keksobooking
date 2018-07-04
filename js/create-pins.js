@@ -31,19 +31,23 @@
   var positionMainPinLeft = window.globalVar.mapPinMain.style.left;
   var positionMainPinTop = window.globalVar.mapPinMain.style.top;
 
-  formReset.addEventListener('click', function () {
+  var getResetFPage = function () {
+    window.globalVar.form.reset();
     window.globalVar.mapBlock.classList.add('map--faded');
     window.globalVar.form.classList.add('ad-form--disabled');
+    window.globalVar.marker = true;
     removeMapPins();
     window.globalVar.mapPinMain.style.left = positionMainPinLeft;
     window.globalVar.mapPinMain.style.top = positionMainPinTop;
     window.globalVar.formAdress.value = parseFloat(window.globalVar.mapPinMain.style.left) + ', ' + parseFloat(window.globalVar.mapPinMain.style.top);
+  };
 
-  });
+  formReset.addEventListener('click', getResetFPage);
 
   window.createPins = {
     removeMapPins: removeMapPins,
     renderMapPins: renderMapPins,
+    getResetFPage: getResetFPage
   };
 }());
 

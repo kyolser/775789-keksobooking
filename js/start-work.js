@@ -22,9 +22,7 @@
     window.backend.downloadData(function (data) {
       data = data.splice(5, 10);
       window.globalVar.allLoadedPins = data;
-
       window.createPins.renderMapPins(window.globalVar.allLoadedPins);
-
       window.globalVar.mapBlock.classList.remove('map--faded');
       window.globalVar.form.classList.remove('ad-form--disabled');
       for (var field = 0; field < fieldsetArray.length; field++) {

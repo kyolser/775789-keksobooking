@@ -12,7 +12,8 @@
     KEY_ESCAPE: 'Escape',
     success: document.querySelector('.success'),
     allLoadedPins: [],
-    filtredPins: []
+    filtredPins: [],
+    marker : true
   };
 
 })();

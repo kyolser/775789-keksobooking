@@ -9,14 +9,11 @@
   var MAP_HEIGHT_MIN = 130;
   var MAP_WIDTH = document.querySelector('.map__pins').offsetWidth - MAP_PIN_MAIN_WIDTH;
 
-  var marker = true;
-
   window.globalVar.mapPinMain.addEventListener('mousedown', function (evt) {
 
-
-    if (marker) {
+    if (window.globalVar.marker) {
       window.startWork();
-      marker = false;
+      window.globalVar.marker = false;
     }
 
     evt.preventDefault();

@@ -2,7 +2,7 @@
 
 (function () {
 
-  var URL_UPLOAD = 'https://js.dump.academy/keksobooking1';
+  var URL_UPLOAD = 'https://js.dump.academy/keksobooking';
   var URL_DOWNLOAD = 'https://js.dump.academy/keksobooking/data';
   var TIMEOUT = 10000;
 
@@ -12,23 +12,6 @@
     SERVER_ERROR: 500
   };
 
-  var formSubmit = window.globalVar.form.querySelector('.ad-form__submit');
-
-  formSubmit.addEventListener('click', function () {
-    window.globalVar.success.classList.remove('hidden');
-  });
-
-  window.globalVar.success.addEventListener('click', function () {
-    window.globalVar.success.classList.add('hidden');
-  });
-
-  var documentFormKeydownHandler = function (evt) {
-    if (evt.key === window.globalVar.KEY_ESCAPE) {
-      window.globalVar.success.classList.add('hidden');
-    }
-  };
-
-  document.addEventListener('keydown', documentFormKeydownHandler);
 
   var createXHR = function (onLoad, onError) {
     var xhr = new XMLHttpRequest();
@@ -69,10 +52,32 @@
   };
 
   var uploadData = function (data, onLoad, onError) {
-    var xhr = createXHR(onLoad, onError);
+    var xhr = createXHR(data, onLoad, onError);
     xhr.open('POST', URL_UPLOAD);
     xhr.send(data);
   };
+
+
+  window.globalVar.form.addEventListener('submit', function (evt) {
+    evt.preventDefault();
+    uploadData(new FormData(window.globalVar.form), function (response) {
+      window.createPins.getResetFPage();
+      window.globalVar.success.classList.remove('hidden');
+      console.log(response);
+    });
+  });
+
+  window.globalVar.success.addEventListener('click', function () {
+    window.globalVar.success.classList.add('hidden');
+  });
+
+  var documentFormKeydownHandler = function (evt) {
+    if (evt.key === window.globalVar.KEY_ESCAPE) {
+      window.globalVar.success.classList.add('hidden');
+    }
+  };
+
+  document.addEventListener('keydown', documentFormKeydownHandler);
 
   window.backend = {
     downloadData: downloadData,
