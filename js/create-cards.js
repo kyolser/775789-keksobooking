@@ -45,7 +45,6 @@
 
   var renderMapMark = function (adsOffer) {
     var mapMarkElement = window.globalVar.mapMarkTemp.querySelector('.map__card').cloneNode(true);
-    var featuresNew = [];
     var photosNew = [];
     var featersOfElement = [];
     mapMarkElement.querySelector('img').src = adsOffer.author.avatar;

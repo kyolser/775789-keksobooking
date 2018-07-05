@@ -18,13 +18,6 @@
     'palace': 10000
   };
 
-  var SelectTypeBuilding = {
-    bungalo: 'bungalo',
-    flat: 'flat',
-    house: 'house',
-    palace: 'palace'
-  };
-
   var selectType = window.globalVar.form.querySelector('#type');
   var inputPrice = window.globalVar.form.querySelector('#price');
   var selectTimeIn = window.globalVar.form.querySelector('#timein');
@@ -34,19 +27,18 @@
   var capacityOptions = selectCapacity.querySelectorAll('option');
 
   selectType.addEventListener('change', function () {
-    switch (selectType.value) {
-      case SelectTypeBuilding.bungalo :
-        inputPrice.setAttribute('placeholder', SelectTypePrice.bungalo);
-        inputPrice.setAttribute('min', SelectTypePrice.bungalo);
-      case SelectTypeBuilding.flat :
-        inputPrice.setAttribute('placeholder', SelectTypePrice.flat);
-        inputPrice.setAttribute('min', SelectTypePrice.flat);
-      case SelectTypeBuilding.house :
-        inputPrice.setAttribute('placeholder', SelectTypePrice.house);
-        inputPrice.setAttribute('min', SelectTypePrice.house);
-      case SelectTypeBuilding.palace :
-        inputPrice.setAttribute('placeholder', SelectTypePrice.palace);
-        inputPrice.setAttribute('min', SelectTypePrice.palace);
+    if (selectType.value === 'bungalo') {
+      inputPrice.setAttribute('placeholder', SelectTypePrice.bungalo);
+      inputPrice.setAttribute('min', SelectTypePrice.bungalo);
+    } else if (selectType.value === 'flat') {
+      inputPrice.setAttribute('placeholder', SelectTypePrice.flat);
+      inputPrice.setAttribute('min', SelectTypePrice.flat);
+    } else if (selectType.value === 'house') {
+      inputPrice.setAttribute('placeholder', SelectTypePrice.house);
+      inputPrice.setAttribute('min', SelectTypePrice.house);
+    } else if (selectType.value === 'palace') {
+      inputPrice.setAttribute('placeholder', SelectTypePrice.palace);
+      inputPrice.setAttribute('min', SelectTypePrice.palace);
     }
   });
 
