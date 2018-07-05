@@ -5,7 +5,7 @@
   window.globalVar = {
     mapBlock: document.querySelector('.map'),
     form: document.querySelector('.ad-form'),
-    fieldsetNodeList: document.querySelectorAll('fieldset'),
+    fieldsetArray: Array.from(document.querySelectorAll('fieldset')),
     mapMarkTemp: document.querySelector('.temp').content,
     mapPinMain: document.querySelector('.map__pin--main'),
     formAdress: document.querySelector('#address'),
@@ -13,7 +13,9 @@
     success: document.querySelector('.success'),
     allLoadedPins: [],
     filtredPins: [],
-    marker: true
+    marker: true,
+    CUT_START: 5,
+    CUT_QUANTITY: 10
   };
 
 })();

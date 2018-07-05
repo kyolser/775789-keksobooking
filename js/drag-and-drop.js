@@ -6,7 +6,7 @@
   var MAP_PIN_MAIN_WIDTH = 64;
 
   var MAP_HEIGHT = 630;
-  var MAP_HEIGHT_MIN = 130;
+  var MAP_HEIGHT_MIN = 60;
   var MAP_WIDTH = document.querySelector('.map__pins').offsetWidth - MAP_PIN_MAIN_WIDTH;
 
   window.globalVar.mapPinMain.addEventListener('mousedown', function (evt) {
@@ -22,7 +22,7 @@
       y: evt.clientY
     };
 
-    var onMouseMove = function (moveEvt) {
+    var documentMouseMoveHandler = function (moveEvt) {
       moveEvt.preventDefault();
       var shift = {
         x: startCoords.x - moveEvt.clientX,
@@ -53,14 +53,14 @@
       }
     };
 
-    var onMouseUp = function (upEvt) {
+    var documentMouseUpHandler = function (upEvt) {
       upEvt.preventDefault();
-      document.removeEventListener('mousemove', onMouseMove);
-      document.removeEventListener('mouseup', onMouseUp);
+      document.removeEventListener('mousemove', documentMouseMoveHandler);
+      document.removeEventListener('mouseup', documentMouseUpHandler);
     };
 
-    document.addEventListener('mousemove', onMouseMove);
-    document.addEventListener('mouseup', onMouseUp);
+    document.addEventListener('mousemove', documentMouseMoveHandler);
+    document.addEventListener('mouseup', documentMouseUpHandler);
   });
 
 }());

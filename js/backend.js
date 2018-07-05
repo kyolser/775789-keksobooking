@@ -61,7 +61,7 @@
   window.globalVar.form.addEventListener('submit', function (evt) {
     evt.preventDefault();
     uploadData(new FormData(window.globalVar.form), function () {
-      window.createPins.getResetFPage();
+      window.createPins.resetClickHandler();
       window.globalVar.success.classList.remove('hidden');
     });
   });

@@ -6,14 +6,15 @@
 
   var renderMapPins = function (adsObjects) {
     var fragment = document.createDocumentFragment();
-    for (var i = 0; i < adsObjects.length; i++) {
+
+    adsObjects.forEach(function (obj) {
       var pin = window.globalVar.mapMarkTemp.querySelector('.map__pin').cloneNode(true);
-      pin.style.left = adsObjects[i].location.x + 'px';
-      pin.style.top = adsObjects[i].location.y + 'px';
-      pin.querySelector('img').src = adsObjects[i].author.avatar;
-      pin.addEventListener('click', window.createCards.pinClickHandler.bind(undefined, adsObjects[i]));
+      pin.style.left = obj.location.x + 'px';
+      pin.style.top = obj.location.y + 'px';
+      pin.querySelector('img').src = obj.author.avatar;
+      pin.addEventListener('click', window.createCards.pinClickHandler.bind(undefined, obj));
       fragment.appendChild(pin);
-    }
+    });
     mapPins.appendChild(fragment);
   };
 
@@ -31,8 +32,11 @@
   var positionMainPinLeft = window.globalVar.mapPinMain.style.left;
   var positionMainPinTop = window.globalVar.mapPinMain.style.top;
 
-  var getResetFPage = function () {
+  var resetClickHandler = function () {
     window.globalVar.form.reset();
+    window.globalVar.fieldsetArray.forEach(function (field) {
+      field.setAttribute('disabled', true);
+    });
     window.globalVar.mapBlock.classList.add('map--faded');
     window.globalVar.form.classList.add('ad-form--disabled');
     window.globalVar.marker = true;
@@ -42,12 +46,12 @@
     window.globalVar.formAdress.value = parseFloat(window.globalVar.mapPinMain.style.left) + ', ' + parseFloat(window.globalVar.mapPinMain.style.top);
   };
 
-  formReset.addEventListener('click', getResetFPage);
+  formReset.addEventListener('click', resetClickHandler);
 
   window.createPins = {
     removeMapPins: removeMapPins,
     renderMapPins: renderMapPins,
-    getResetFPage: getResetFPage
+    resetClickHandler: resetClickHandler
   };
 }());
 

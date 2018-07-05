@@ -2,7 +2,8 @@
 
 (function () {
 
-  var fieldsetArray = Array.from(window.globalVar.fieldsetNodeList);
+  var TIMEOUT_OF_ALERT = 3000;
+
   var titlePage = document.querySelector('.promo');
   var message = document.createElement('div');
   window.globalVar.formAdress.value = parseFloat(window.globalVar.mapPinMain.style.left) + ', ' + parseFloat(window.globalVar.mapPinMain.style.top);
@@ -15,24 +16,23 @@
     setTimeout(function () {
       var alert = document.querySelector('.alert');
       alert.parentNode.removeChild(alert);
-    }, 3000);
+    }, TIMEOUT_OF_ALERT);
   };
 
   var startWork = function () {
     window.backend.downloadData(function (data) {
-      data = data.splice(5, 10);
+      data = data.splice(window.globalVar.CUT_START, window.globalVar.CUT_QUANTITY);
       window.globalVar.allLoadedPins = data;
       window.createPins.renderMapPins(window.globalVar.allLoadedPins);
       window.globalVar.mapBlock.classList.remove('map--faded');
       window.globalVar.form.classList.remove('ad-form--disabled');
-      for (var field = 0; field < fieldsetArray.length; field++) {
-        fieldsetArray[field].removeAttribute('disabled', true);
-      }
+      window.globalVar.fieldsetArray.forEach(function (field) {
+        field.removeAttribute('disabled', true);
+      });
     }, function (err) {
       stopWork(err);
     });
   };
-
 
   window.startWork = startWork;
 

@@ -8,6 +8,13 @@
     HIGH: 'high'
   };
 
+  var PriceValue = {
+    priceOne: 10000,
+    priceTwo: 50000
+  };
+
+  var ANY = 'any';
+
   var filtresForm = document.querySelector('.map__filters');
   var housingTypeField = filtresForm.querySelector('#housing-type');
   var housingPriceField = filtresForm.querySelector('#housing-price');
@@ -16,17 +23,17 @@
   var feauturesList = filtresForm.querySelectorAll('input[name="features"]');
 
   var compareFiltres = function (filterValue, compareValue) {
-    return filterValue === 'any' || compareValue === filterValue;
+    return filterValue === ANY || compareValue === filterValue;
   };
 
   var compareByPrice = function (filterValue, offerPrice) {
     switch (filterValue) {
       case PriceTypes.MIDDLE:
-        return offerPrice >= 10000 && offerPrice < 50000;
+        return offerPrice >= PriceValue.priceOne && offerPrice < PriceValue.priceTwo;
       case PriceTypes.LOW:
-        return offerPrice < 10000;
+        return offerPrice < PriceValue.priceOne;
       case PriceTypes.HIGH:
-        return offerPrice >= 50000;
+        return offerPrice >= PriceValue.priceTwo;
       default:
         return true;
     }
@@ -38,23 +45,11 @@
         return false;
       }
     }
-
     return true;
   };
 
   var setFiltres = function () {
     var feauturesArr = Array.from(feauturesList);
-
-    /*        feauturesArr.forEach(function(feat){
-      feat.addEventListener('focus', function(){
-        feat.addEventListener('keydown', function(evt){
-          if (evt.key === 13) {
-          alert()
-        }
-      })
-      })
-    })*/
-
     var selectedFeautures = feauturesArr.filter(function (it) {
       return it.checked;
     }).map(function (it) {
@@ -87,14 +82,14 @@
     });
   };
 
-  var onFiltresFormChange = window.debounce(function () {
+  var FiltresFormChangeHandler = window.debounce(function () {
     window.createCards.mapCardRemove();
     window.createPins.removeMapPins();
     var filterPins = setFiltres();
-    filterPins.splice(5, 10);
+    filterPins.splice(window.globalVar.CUT_START, window.globalVar.CUT_QUANTITY);
     window.createPins.renderMapPins(filterPins);
   });
 
-  filtresForm.addEventListener('change', onFiltresFormChange);
+  filtresForm.addEventListener('change', FiltresFormChangeHandler);
 
 })();

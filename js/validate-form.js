@@ -11,11 +11,18 @@
     '100': ['0']
   };
 
-  var selectTypePrice = {
+  var SelectTypePrice = {
     'bungalo': 0,
     'flat': 1000,
     'house': 5000,
     'palace': 10000
+  };
+
+  var SelectTypeBuilding = {
+    bungalo: 'bungalo',
+    flat: 'flat',
+    house: 'house',
+    palace: 'palace'
   };
 
   var selectType = window.globalVar.form.querySelector('#type');
@@ -26,20 +33,20 @@
   var selectCapacity = window.globalVar.form.querySelector('#capacity');
   var capacityOptions = selectCapacity.querySelectorAll('option');
 
-
   selectType.addEventListener('change', function () {
-    if (selectType.value === 'bungalo') {
-      inputPrice.setAttribute('placeholder', selectTypePrice.bungalo);
-      inputPrice.setAttribute('min', selectTypePrice.bungalo);
-    } else if (selectType.value === 'flat') {
-      inputPrice.setAttribute('placeholder', selectTypePrice.flat);
-      inputPrice.setAttribute('min', selectTypePrice.flat);
-    } else if (selectType.value === 'house') {
-      inputPrice.setAttribute('placeholder', selectTypePrice.house);
-      inputPrice.setAttribute('min', selectTypePrice.house);
-    } else if (selectType.value === 'palace') {
-      inputPrice.setAttribute('placeholder', selectTypePrice.palace);
-      inputPrice.setAttribute('min', selectTypePrice.palace);
+    switch (selectType.value) {
+      case SelectTypeBuilding.bungalo :
+        inputPrice.setAttribute('placeholder', SelectTypePrice.bungalo);
+        inputPrice.setAttribute('min', SelectTypePrice.bungalo);
+      case SelectTypeBuilding.flat :
+        inputPrice.setAttribute('placeholder', SelectTypePrice.flat);
+        inputPrice.setAttribute('min', SelectTypePrice.flat);
+      case SelectTypeBuilding.house :
+        inputPrice.setAttribute('placeholder', SelectTypePrice.house);
+        inputPrice.setAttribute('min', SelectTypePrice.house);
+      case SelectTypeBuilding.palace :
+        inputPrice.setAttribute('placeholder', SelectTypePrice.palace);
+        inputPrice.setAttribute('min', SelectTypePrice.palace);
     }
   });
 
