@@ -9,8 +9,8 @@
   };
 
   var PRICE_VALUE = {
-    priceOne: 10000,
-    priceTwo: 50000
+    PRICE_ONE: 10000,
+    PRICE_TWO: 50000
   };
 
   var ANY = 'any';
@@ -29,23 +29,22 @@
   var compareByPrice = function (filterValue, offerPrice) {
     switch (filterValue) {
       case PRICE_TYPES.MIDDLE:
-      return offerPrice >= PRICE_VALUE.priceOne && offerPrice < PRICE_VALUE.priceTwo;
+        return offerPrice >= PRICE_VALUE.PRICE_ONE && offerPrice < PRICE_VALUE.PRICE_TWO;
       case PRICE_TYPES.LOW:
-      return offerPrice < PRICE_VALUE.priceOne;
+        return offerPrice < PRICE_VALUE.PRICE_ONE;
       case PRICE_TYPES.HIGH:
-      return offerPrice >= PRICE_VALUE.priceTwo;
+        return offerPrice >= PRICE_VALUE.PRICE_TWO;
       default:
-      return true;
+        return true;
     }
   };
 
   var compareByFeatures = function (filteredFetures, comparedValues) {
-
-    filteredFetures.forEach(function (feat) {
-     if (!comparedValues.includes(feat)) {
-      return false;
+    for (var i = 0; i < filteredFetures.length; i++) {
+      if (!comparedValues.includes(filteredFetures[i])) {
+        return false;
+      }
     }
-  })
     return true;
   };
 

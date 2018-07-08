@@ -64,9 +64,9 @@
     mapMarkElement.querySelector('.popup__description').textContent = adsOffer.offer.description;
     var popupPhotosElement = mapMarkElement.querySelector('.popup__photos');
 
-    for (var p = 0; p < adsOffer.offer.photos.length; p++) {
-      photosNew[p] = '<img src="' + adsOffer.offer.photos[p] + '" class="popup__photo" width="45" height="40" alt="Фотография жилья">';
-    }
+    adsOffer.offer.photos.forEach(function (photo) {
+      photosNew.push('<img src="' + photo + '" class="popup__photo" width="45" height="40" alt="Фотография жилья">');
+    });
     popupPhotosElement.innerHTML = photosNew.join('');
     var existCard = window.globalVar.mapBlock.querySelector('.map__card');
 

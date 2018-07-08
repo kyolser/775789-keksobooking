@@ -52,10 +52,9 @@
 
   var setCapacity = function (selectedValue) {
 
-
-    capacityOptions.forEach(function(option){
+    capacityOptions.forEach(function (option) {
       option.disabled = !ROOMS_CAPACITY[selectedValue].includes(option.value);
-    })
+    });
 
     if (selectCapacity.options[selectCapacity.selectedIndex].disabled) {
       selectCapacity.value = ROOMS_CAPACITY[selectedValue][0];

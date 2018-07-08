@@ -19,22 +19,12 @@
   };
 
   var removeMapPins = function () {
-    var allRenderedPins = Array.from(document.querySelectorAll('.map__pin'));
+    var allRenderedPins = document.querySelectorAll('.map__pin:not(.map__pin--main)');
 
     allRenderedPins.forEach(function (pin) {
-      if (pin.classList.contains('map__pin--main')) {
-        continue;
-      }
+
       mapPins.removeChild(pin);
-    })
-
-   /* for (var i = 0; i < allRenderedPins.length; i++) {
-      if (allRenderedPins[i].classList.contains('map__pin--main')) {
-        continue;
-      }
-      mapPins.removeChild(allRenderedPins[i]);
-    }*/
-
+    });
   };
 
   var formReset = document.querySelector('.ad-form__reset');
