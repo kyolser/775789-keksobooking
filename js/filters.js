@@ -2,13 +2,13 @@
 
 (function () {
 
-  var PriceTypes = {
+  var PRICE_TYPES = {
     MIDDLE: 'middle',
     LOW: 'low',
     HIGH: 'high'
   };
 
-  var PriceValue = {
+  var PRICE_VALUE = {
     priceOne: 10000,
     priceTwo: 50000
   };
@@ -28,23 +28,24 @@
 
   var compareByPrice = function (filterValue, offerPrice) {
     switch (filterValue) {
-      case PriceTypes.MIDDLE:
-        return offerPrice >= PriceValue.priceOne && offerPrice < PriceValue.priceTwo;
-      case PriceTypes.LOW:
-        return offerPrice < PriceValue.priceOne;
-      case PriceTypes.HIGH:
-        return offerPrice >= PriceValue.priceTwo;
+      case PRICE_TYPES.MIDDLE:
+      return offerPrice >= PRICE_VALUE.priceOne && offerPrice < PRICE_VALUE.priceTwo;
+      case PRICE_TYPES.LOW:
+      return offerPrice < PRICE_VALUE.priceOne;
+      case PRICE_TYPES.HIGH:
+      return offerPrice >= PRICE_VALUE.priceTwo;
       default:
-        return true;
+      return true;
     }
   };
 
   var compareByFeatures = function (filteredFetures, comparedValues) {
-    for (var i = 0; i < filteredFetures.length; i++) {
-      if (!comparedValues.includes(filteredFetures[i])) {
-        return false;
-      }
+
+    filteredFetures.forEach(function (feat) {
+     if (!comparedValues.includes(feat)) {
+      return false;
     }
+  })
     return true;
   };
 
@@ -82,7 +83,7 @@
     });
   };
 
-  var FiltresFormChangeHandler = window.debounce(function () {
+  var filtresFormChangeHandler = window.debounce(function () {
     window.createCards.mapCardRemove();
     window.createPins.removeMapPins();
     var filterPins = setFiltres();
@@ -90,6 +91,6 @@
     window.createPins.renderMapPins(filterPins);
   });
 
-  filtresForm.addEventListener('change', FiltresFormChangeHandler);
+  filtresForm.addEventListener('change', filtresFormChangeHandler);
 
 })();

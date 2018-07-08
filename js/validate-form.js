@@ -4,14 +4,14 @@
 
   var DEFAUTL_SELECTED_ROOM = '1';
 
-  var RoomsCapacity = {
+  var ROOMS_CAPACITY = {
     '1': ['1'],
     '2': ['1', '2'],
     '3': ['1', '2', '3'],
     '100': ['0']
   };
 
-  var SelectTypePrice = {
+  var SELECT_TYPE_PRICE = {
     'bungalo': 0,
     'flat': 1000,
     'house': 5000,
@@ -28,17 +28,17 @@
 
   selectType.addEventListener('change', function () {
     if (selectType.value === 'bungalo') {
-      inputPrice.setAttribute('placeholder', SelectTypePrice.bungalo);
-      inputPrice.setAttribute('min', SelectTypePrice.bungalo);
+      inputPrice.setAttribute('placeholder', SELECT_TYPE_PRICE.bungalo);
+      inputPrice.setAttribute('min', SELECT_TYPE_PRICE.bungalo);
     } else if (selectType.value === 'flat') {
-      inputPrice.setAttribute('placeholder', SelectTypePrice.flat);
-      inputPrice.setAttribute('min', SelectTypePrice.flat);
+      inputPrice.setAttribute('placeholder', SELECT_TYPE_PRICE.flat);
+      inputPrice.setAttribute('min', SELECT_TYPE_PRICE.flat);
     } else if (selectType.value === 'house') {
-      inputPrice.setAttribute('placeholder', SelectTypePrice.house);
-      inputPrice.setAttribute('min', SelectTypePrice.house);
+      inputPrice.setAttribute('placeholder', SELECT_TYPE_PRICE.house);
+      inputPrice.setAttribute('min', SELECT_TYPE_PRICE.house);
     } else if (selectType.value === 'palace') {
-      inputPrice.setAttribute('placeholder', SelectTypePrice.palace);
-      inputPrice.setAttribute('min', SelectTypePrice.palace);
+      inputPrice.setAttribute('placeholder', SELECT_TYPE_PRICE.palace);
+      inputPrice.setAttribute('min', SELECT_TYPE_PRICE.palace);
     }
   });
 
@@ -51,11 +51,14 @@
   });
 
   var setCapacity = function (selectedValue) {
-    for (var i = 0; i < capacityOptions.length; i++) {
-      capacityOptions[i].disabled = !RoomsCapacity[selectedValue].includes(capacityOptions[i].value);
-    }
+
+
+    capacityOptions.forEach(function(option){
+      option.disabled = !ROOMS_CAPACITY[selectedValue].includes(option.value);
+    })
+
     if (selectCapacity.options[selectCapacity.selectedIndex].disabled) {
-      selectCapacity.value = RoomsCapacity[selectedValue][0];
+      selectCapacity.value = ROOMS_CAPACITY[selectedValue][0];
     }
   };
 

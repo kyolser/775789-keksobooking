@@ -6,12 +6,11 @@
   var URL_DOWNLOAD = 'https://js.dump.academy/keksobooking/data';
   var TIMEOUT = 10000;
 
-  var HTTPResponseCodes = {
+  var HTTP_RESPONSE_CODES = {
     NOT_FOUND: 404,
     SUCCESS: 200,
     SERVER_ERROR: 500
   };
-
 
   var createXHR = function (onLoad, onError) {
     var xhr = new XMLHttpRequest();
@@ -20,13 +19,13 @@
 
     xhr.addEventListener('load', function () {
       switch (xhr.status) {
-        case HTTPResponseCodes.SUCCESS:
+        case HTTP_RESPONSE_CODES.SUCCESS:
           onLoad(xhr.response);
           break;
-        case HTTPResponseCodes.NOT_FOUND:
+        case HTTP_RESPONSE_CODES.NOT_FOUND:
           onError('Ресурс не найден');
           break;
-        case HTTPResponseCodes.SERVER_ERROR:
+        case HTTP_RESPONSE_CODES.SERVER_ERROR:
           onError('Ошибка на стороне сервера.');
           break;
         default:
@@ -56,7 +55,6 @@
     xhr.open('POST', URL_UPLOAD);
     xhr.send(data);
   };
-
 
   window.globalVar.form.addEventListener('submit', function (evt) {
     evt.preventDefault();
